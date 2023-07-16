@@ -30,7 +30,7 @@ export const updateNote = async (req, res) => {
 export const deleteNote = async (req, res) => {
   const token = decodeToken(req)
   try {
-    const allUsers = await noteModel.deleteOne({ user_id: token.id, _id: req.params.id })
+    await noteModel.deleteOne({ user_id: token.id, _id: req.params.id })
     return res.status(204).json({ "status": "success", message: "note deleted" })
   } catch (error) {
     console.log(error)

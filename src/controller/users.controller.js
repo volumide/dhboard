@@ -27,24 +27,6 @@ export const signup = async (req, res) => {
   }
 }
 
-// export const updateUser = async (req, res) => {
-//   try {
-//     const updateUser = await userModel.findByIdAndUpdate(req.params.id, req.body, { new: true })
-//     return res.status(200).json({ data: updateUser, message: "success" })
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
-// export const getUsers = async (req, res) => {
-//   try {
-//     const allUsers = await userModel.find()
-//     return res.status(200).json({ data: allUsers, message: "success" })
-//   } catch (error) {
-//     console.log(error)
-//   }
-// }
-
 export const login = async (req, res) => {
   try {
     const user = await userModel.findOne({ email: req.body.email })
@@ -56,7 +38,7 @@ export const login = async (req, res) => {
       firstName: user.firstName,
       lastName: user.lastName
     })
-    return res.status(200).json({ token: tokenize })
+    return res.status(200).json({ token: tokenize, name: user.firstName + " " + user.lastName })
   } catch (error) {
     console.log(error)
   }
